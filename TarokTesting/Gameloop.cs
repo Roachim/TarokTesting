@@ -25,7 +25,6 @@ namespace TarokScoreTesting
                 while (GameOn)
                 {
                     int stop = 0;
-                    //The thing that happens
                     GameScreen.TheScreen(_players);
                     //new game = break;
                     string key = Console.ReadKey().KeyChar.ToString();
