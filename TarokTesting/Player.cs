@@ -7,11 +7,23 @@ namespace TarokScoreTesting
     public class Player
     {
         //has points
-        public int Cup { get; set; }
-        public string Name { get; set; }
+        public virtual int Cup { get; set; }
+        public virtual string Name { get; set; }
+
+        #region Constructor
+
+        public Player()
+        {
+
+        }
+
         public Player(string name)
         {
             Name = name;
         }
+
+        #endregion
+
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Moq;
 
 namespace TarokScoreTesting
 {
@@ -53,9 +54,19 @@ namespace TarokScoreTesting
             while (players.Count < 3)
             {
 
-                Console.Write($"Please write Player {i} Name \n");
-                Player player = new Player(Console.ReadLine());
+                //Console.Write($"Please write Player {i} Name \n"); Console.ReadLine()
+                Player player = new Player("Player 1");
                 players.Add(player);
+                i++;
+                var mockPlayer2 = new Mock<Player>();
+                mockPlayer2.SetupProperty(p => p.Cup, 0);
+                mockPlayer2.SetupProperty(p => p.Name, "Player 2");
+                players.Add(mockPlayer2.Object);
+                i++;
+                var mockPlayer3 = new Mock<Player>();
+                mockPlayer3.SetupProperty(p => p.Cup, 0);
+                mockPlayer3.SetupProperty(p => p.Name, "Player 3");
+                players.Add(mockPlayer3.Object);
                 i++;
             }
             return players;
@@ -63,7 +74,7 @@ namespace TarokScoreTesting
         public static Player ChoosePlayer(List<Player> players)
         {
             Player returnPlayer;
-            Console.WriteLine("Who makes a declaration? Please input number/n");
+            Console.WriteLine("\nWho makes a declaration? Please input number\n");
             int i = 1;
             foreach (var player in players)
             {
@@ -71,19 +82,20 @@ namespace TarokScoreTesting
                 Console.WriteLine(i+". " + player.Name+ ". \n");
                 i++;
             }
-            
-            while(true)
+
+            string key = Console.ReadKey().KeyChar.ToString();
+
+            while (true)
             {
-                Console.ReadKey();
-                if (Console.ReadKey().KeyChar.ToString() == "1")
+                if (key == "1")
                 {
                     return players[0];
                 }
-                if(Console.ReadKey().KeyChar.ToString() == "2")
+                if(key == "2")
                 {
                     return players[1];
                 }
-                if (Console.ReadKey().KeyChar.ToString() == "3")
+                if (key == "3")
                 {
                     return players[2];
                 }
@@ -95,7 +107,7 @@ namespace TarokScoreTesting
         {
             bool success = false;
             int result = 0;
-            Console.WriteLine("Choose declaration: \n");
+            Console.WriteLine("\nChoose declaration: \n");
 
             Console.WriteLine(
                 "1: Ten or more Taroks \n" +
@@ -105,7 +117,7 @@ namespace TarokScoreTesting
                 "5: Full Cavalry \n" +
                 "6: Half Cavalry \n" +
                 "7: Overfull Cavalry \n" +
-                "8: Overfull in Kings"
+                "8: Overfull in Kings\n"
                 );
             
             while (!success)
@@ -113,12 +125,12 @@ namespace TarokScoreTesting
                 success = Int32.TryParse(Console.ReadKey().KeyChar.ToString(), out result);
                 if (!success)
                 {
-                    Console.WriteLine("Invalid. Please input a valid number. \n");
+                    Console.WriteLine("\nInvalid. Please input a valid number. \n");
 
                 }
                 if (result > 8 || result < 1)
                 {
-                    Console.WriteLine("Invalid number.");
+                    Console.WriteLine("\nInvalid number.\n");
                     success = false;
                 }
                 
