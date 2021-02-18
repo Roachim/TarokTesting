@@ -26,18 +26,9 @@ namespace TarokScoreTesting
                 {
                     int stop = 0;
                     GameScreen.TheScreen(_players);
-                    //new game = break;
                     string key = Console.ReadKey().KeyChar.ToString();
                     if (key == "1")
                     {
-                        //"1: Ten or more Taroks /n" +
-                        //"2: Three or Matadors/n" +
-                       //"3: Four Kings /n" +
-                       //"4: Half in Kings /n" +
-                       //"5: Full Cavalry /n" +
-                       //"6: Half Cavalry /n" +
-                       //"7: Overfull Cavalry /n" +
-                       //"8: Overfull in Kings"
                         Player pl = GameScreen.ChoosePlayer(_players);
 
                         int choice = GameScreen.ChooseDeclaration();
